@@ -5,14 +5,7 @@ Wechat Api For .net core
 services.AddOptions().Configure<WeChatInfo>(Configuration.GetSection("WeChatInfo"));
 ##调用方法：
 我写在中间件中 例如：
-  public async Task Invoke(HttpContext context, IWeChatGetMessage message, IWeChatSendMessage send, IOptions<WeChatInfo> info,IUserService userservice)
-        {
-            var url = context.Request.Path.Value.ToLower();
-            if (url == "/wx")
-            {
-                try
-                {
-                    message.init(info.Value);
+message.init(info.Value);
                     send.init(info.Value);
                     //微信绑定
                     message.baseMsg((msg) =>
@@ -30,15 +23,3 @@ services.AddOptions().Configure<WeChatInfo>(Configuration.GetSection("WeChatInfo
                         list.Add(item);
                         send.newsMsg(msg.FromUserName, list);
                     });
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex.Message);
-                    await context.Response.WriteAsync(ex.Message,Encoding.GetEncoding("gb2312"));
-                }
-            }
-            else
-            {
-                await _next.Invoke(context);
-            }
-        }
