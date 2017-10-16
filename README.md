@@ -5,21 +5,21 @@ Wechat Api For .net core
 services.AddOptions().Configure<WeChatInfo>(Configuration.GetSection("WeChatInfo"));
 ## 调用方法：
 message send info 自行注入 例如：</br>
-message.init(info.Value);
-                    send.init(info.Value);
-                    //微信绑定
-                    message.baseMsg((msg) =>
-                    {
-                        userservice.addWechatUser(msg.FromUserName);
-                    });
-                    message.subscribeMsg((msg) =>
-                    {
-                        var list =new List<ResponseItem>();
-                        var item = new ResponseItem {
-                            Description="xxxxx",
-                            PicUrl="https://xxxx.xx.xx",
-                            Title="欢迎关注xxx"
-                        };
-                        list.Add(item);
-                        send.newsMsg(msg.FromUserName, list);
-                    });
+message.init(info.Value);</br>
+                    send.init(info.Value);</br>
+                    //微信绑定</br>
+                    message.baseMsg((msg) =></br>
+                    {</br>
+                        userservice.addWechatUser(msg.FromUserName);</br>
+                    });</br>
+                    message.subscribeMsg((msg) =></br>
+                    {</br>
+                        var list =new List<ResponseItem>();</br>
+                        var item = new ResponseItem {</br>
+                            Description="xxxxx",</br>
+                            PicUrl="https://xxxx.xx.xx",</br>
+                            Title="欢迎关注xxx"</br>
+                        };</br>
+                        list.Add(item);</br>
+                        send.newsMsg(msg.FromUserName, list);</br>
+                    });</br>
