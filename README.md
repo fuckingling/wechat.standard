@@ -4,7 +4,7 @@ Wechat Api For .net core
 由于是多用户 所以每个接口 使用前需调用Init方法   如果是单用户场景可以自行注入：
 services.AddOptions().Configure<WeChatInfo>(Configuration.GetSection("WeChatInfo"));
 ## 调用方法：
-我写在中间件中 例如：
+message send info 自行注入 例如：</br>
 message.init(info.Value);
                     send.init(info.Value);
                     //微信绑定
